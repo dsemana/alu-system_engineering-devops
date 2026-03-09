@@ -1,178 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hello.css">
-    <link rel="shortcut icon" href="./assets/logo1.png" type="image/x-icon">
-    <title>Not Found</title>
-
+  <head>
+    <title>404 - Page Not Found</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        body {
-            margin-top: 0px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 0px 20px;
-            font-size: 20px;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans:wght@400;700&display=swap");
 
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        .nav-left {
-            font-size: 20px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
+      body {
+        background-color: #0a0a1a;
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #ccc;
+        overflow: hidden;
+        position: relative;
+      }
 
-        .nav-left > h1 {
-            font-size: 50px;
-            font-weight: 900;
-            margin-top: 5px;
-        }
+      /* Animated gradient background */
+      body::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle at 20% 50%, rgba(0, 119, 255, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(0, 200, 150, 0.06) 0%, transparent 50%);
+        animation: drift 15s ease-in-out infinite alternate;
+      }
 
-        .nav-left > img {
-            margin-top: -35px;
-        }
+      @keyframes drift {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        100% { transform: translate(-30px, -20px) rotate(3deg); }
+      }
 
+      /* Floating particles */
+      .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
 
-        .nav-right {
-            font-size: 20px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 80px;
-        }
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(0, 119, 255, 0.4);
+        border-radius: 50%;
+        animation: float linear infinite;
+      }
 
+      .particle:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+      .particle:nth-child(2) { left: 25%; animation-duration: 12s; animation-delay: 2s; background: rgba(138, 43, 226, 0.4); }
+      .particle:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
+      .particle:nth-child(4) { left: 55%; animation-duration: 14s; animation-delay: 1s; background: rgba(0, 200, 150, 0.4); }
+      .particle:nth-child(5) { left: 70%; animation-duration: 9s; animation-delay: 3s; }
+      .particle:nth-child(6) { left: 85%; animation-duration: 11s; animation-delay: 5s; background: rgba(138, 43, 226, 0.4); }
+      .particle:nth-child(7) { left: 15%; animation-duration: 13s; animation-delay: 6s; background: rgba(0, 200, 150, 0.3); }
+      .particle:nth-child(8) { left: 60%; animation-duration: 7s; animation-delay: 2s; }
 
-        ul {
-            list-style-type: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 60px;
-        }
+      @keyframes float {
+        0% { transform: translateY(100vh) scale(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+      }
 
-        ul > li {
-            font-weight: 600;
-            transition: color 0.6s ease;
-            position: relative;
-        }
+      /* Background text */
+      .background-text {
+        position: absolute;
+        font-family: "Anton", sans-serif;
+        font-size: 20vw;
+        color: rgba(255, 255, 255, 0.015);
+        white-space: nowrap;
+        pointer-events: none;
+        user-select: none;
+        letter-spacing: 0.05em;
+      }
 
+      main {
+        text-align: center;
+        padding: 2rem;
+        max-width: 650px;
+        z-index: 1;
+        animation: fadeIn 1s ease-out;
+      }
 
-        ul li:hover {
-            color: #6347d1;
-            font-weight: 700;
-            transition: all 0.3s ease-in-out;
-        }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
 
+      .error-code {
+        font-family: "Anton", sans-serif;
+        font-size: 8rem;
+        line-height: 1;
+        background: linear-gradient(135deg, #0077ff 0%, #8a2be2 50%, #00c896 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        animation: glitch 3s ease-in-out infinite;
+        position: relative;
+      }
 
-        ul li::before {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 10%;
-            height: 2px;
-            background-color: #6347d1;
-            border-radius: 10px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.8s ease-in-out;
-        } 
+      @keyframes glitch {
+        0%, 90%, 100% { transform: translate(0); }
+        92% { transform: translate(-3px, 2px); }
+        94% { transform: translate(3px, -2px); }
+        96% { transform: translate(-2px, -1px); }
+        98% { transform: translate(2px, 1px); }
+      }
 
-        ul li:hover::before {
-            width: 100%;
-            opacity: 1;
-            visibility: visible;
-        }
+      .subtitle {
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        letter-spacing: 0.3em;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2rem;
+      }
 
-        button {
-            color: #ffffff;
-            font-weight: 500;
-            background-color: #6347d1;
-            padding: 10px 35px;
-            border-radius: 8px;
-            border: 1px solid white;
-            outline: none;
-            cursor: pointer;
-        }
+      .french-quote {
+        font-style: italic;
+        font-size: 1.3rem;
+        color: rgba(138, 43, 226, 0.8);
+        margin-bottom: 2rem;
+        padding: 1rem 2rem;
+        border-left: 3px solid rgba(138, 43, 226, 0.4);
+        text-align: left;
+        background: rgba(138, 43, 226, 0.05);
+        border-radius: 0 8px 8px 0;
+      }
 
-        .main-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      .description {
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.95rem;
+      }
 
-        .main-body-top > img{
-            display: block;
-            margin: auto;
-        }
+      .error-list {
+        text-align: left;
+        display: inline-block;
+        margin-bottom: 2.5rem;
+        list-style: none;
+      }
 
-        .main-body-bottom > div > h1 {
-            color: #6347d1;
-        }
+      .error-list li {
+        padding: 0.5rem 0;
+        color: rgba(255, 255, 255, 0.45);
+        position: relative;
+        padding-left: 1.5rem;
+        font-size: 0.9rem;
+      }
 
-        .main-body-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      .error-list li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #0077ff;
+      }
 
-        .main-body-bottom > div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+      .home-link {
+        display: inline-block;
+        font-family: "Anton", sans-serif;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15em;
+        color: #fff;
+        text-decoration: none;
+        padding: 0.8rem 2.5rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #0077ff, #8a2be2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .home-link {
-            color: #ffffff;
-            font-size: 30px;
-            font-weight: 600;
-            background-color: #6347d1;
-            padding: 15px 60px;
-            border-radius: 20px;
-            border: 1px solid white;
-            outline: none;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        
-        
+      .home-link::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        transition: left 0.5s ease;
+      }
+
+      .home-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 119, 255, 0.3);
+      }
+
+      .home-link:hover::before {
+        left: 100%;
+      }
+
+      /* Decorative line */
+      .divider {
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, #0077ff, #8a2be2);
+        margin: 0 auto 2rem;
+        border-radius: 2px;
+      }
     </style>
-</head>
-<body>
-    <header class="nav">
-        <div class="nav-left">
-            <img src="./assets/logo2.png" alt="logo">
-            <h1>Ronnie</h1>
-        </div>
-
-        <div class="nav-right">
-            <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Technology</li>
-                <li>Blog</li>
-                <li>Contact</li>
-            </ul>
-            <button class="custom-btn">Hire Us</button>
-        </div>
-    </header>
-    <div class="main-body">
-        <div class="main-body-top">
-            <img src="./assets/full.png" alt="" draggable="false">
-        </div>
-        <div class="main-body-bottom">
-            <div>
-                <h1>Ceci n'est pas une page</h1>
-                <a href="/" class="home-link">Go Back<a>
-            </div>
-            <p style="word-wrap: normal;">The page you were searching for seems to have taken a detour into deep space. But don't worry, we're here to navigate you back to safety.</p>
-        </div>
+  </head>
+  <body>
+    <div class="particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
     </div>
-</body>
+    <div class="background-text">404</div>
+    <main>
+      <div class="error-code">404</div>
+      <div class="subtitle">Page Not Found</div>
+      <div class="divider"></div>
+      <div class="french-quote">Ceci n'est pas une page</div>
+      <p class="description">
+        The page you're looking for has drifted into the void.
+        Let's get you back on track.
+      </p>
+      <ul class="error-list">
+        <li>The link may be broken or outdated</li>
+        <li>This page may have never existed</li>
+        <li>The content may have been moved elsewhere</li>
+      </ul>
+      <a href="/" class="home-link">Return Home</a>
+    </main>
+  </body>
 </html>
