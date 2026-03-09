@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Install nginx and configure the root page
+# SetUp Process for Nginx on a server
 
-apt update -y
-apt install -y nginx
+apt-get -y update
+apt-get -y install nginx
+ufw enable
+ufw allow 'Nginx HTTP'
+ufw allow 'OpenSSH'
 echo "Holberton School" > /var/www/html/index.html
 service nginx restart
