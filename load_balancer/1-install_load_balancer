@@ -11,11 +11,11 @@ sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 # Configure HAProxy frontend and backend
 sudo tee -a /etc/haproxy/haproxy.cfg > /dev/null <<EOF
 
-frontend wilson_frontend
+frontend divin_frontend
     bind *:80
-    default_backend wilson_backend
+    default_backend divin_backend
 
-backend wilson_backend
+backend divin_backend
     balance roundrobin
     server 7007-web-01 34.239.0.61:80 check
     server 7007-web-02 3.87.217.227:80 check
