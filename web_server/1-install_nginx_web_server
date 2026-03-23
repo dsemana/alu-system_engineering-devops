@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Installs nginx server
+# Installs nginx server (works in containers / non-systemd systems)
 
 apt-get update -y
 apt-get install -y nginx
 
-# Ensure nginx is started and enabled
-systemctl start nginx
-systemctl enable nginx
-
-# Configure default page
+# Write content
 echo "Holberton School" > /var/www/html/index.html
 
-# Restart to apply changes
-systemctl restart nginx
+# Start nginx (without systemd)
+service nginx start || true
+service nginx restart || true
+
+# Ensure port 80 is open (if ufw exists)
+ufw allow 80/tcp || true
