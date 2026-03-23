@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 # Installs nginx server
 
-apt update -y
-apt install -y nginx
+apt-get update -y
+apt-get install -y nginx
+
+# Ensure nginx is started and enabled
+systemctl start nginx
+systemctl enable nginx
+
+# Configure default page
 echo "Holberton School" > /var/www/html/index.html
-service nginx restart
+
+# Restart to apply changes
+systemctl restart nginx
