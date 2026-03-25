@@ -6,8 +6,8 @@ apt-get install -y nginx
 
 mkdir -p /var/www/html
 
-echo "Holberton School for the win!" > /var/www/html/index.html
-echo "Ceci n'est pas une page" > /var/www/html/404.html
+echo "Holberton School for the win!" | sudo tee /var/www/html/index.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 # Configure nginx with custom 404 page
 cat > /etc/nginx/sites-available/default << 'EOF'
