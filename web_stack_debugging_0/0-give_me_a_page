@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Debugged web stack 0 container
-
+service nginx stop
 echo "Hello Holberton" > /var/www/html/index.html
-
 service apache2 start
-
 echo "apache2 is running"
